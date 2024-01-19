@@ -17,15 +17,17 @@ spec:
         appName:
           title: App Name -- this is the one in your ArgoCD App 
           type: string
-          default: app-name-here
+          default: go-app3
         repoUrl:
           title: Repo Url -- this is the one in your ArgoCD App (includes.git)
           type: string
-          description: gitops-repo-url   
+          description: gitops-repo-url
+          default: https://github.com/stephanie-cy/go-app3-gitops.git   
         namespace:
           title: Namespace  -- this is the one in your ArgoCD App 
           type: string
-          description: namespace-here 
+          description: namespace-here
+          default: go-app3-namespace
   steps:
     - id: create-argocd-resources
       name: Create ArgoCD Resources
