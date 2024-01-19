@@ -32,7 +32,7 @@ spec:
       action: argocd:create-resources
       input:
         appName: ${{ parameters.appName}} 
-        argoInstance: main
+        argoInstance: default
         namespace: ${{ parameters.namespace}} 
         repoUrl: ${{ parameters.repoUrl}} 
         path: ./
