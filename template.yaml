@@ -1,0 +1,42 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  name: test-argocd 
+  title:  Test creating argo app from a template 
+  description: "Testing"  
+spec:
+  type: service 
+  parameters:  
+    - title: Test Info
+      required:
+        - appName
+        - repoUrl 
+        - namespace 
+      properties:
+        appName:
+          title: App Name -- this is the one in your ArgoCD App 
+          type: string
+          default: app-name-here
+        repoUrl:
+          title: Repo Url -- this is the one in your ArgoCD App (includes.git)
+          type: string
+          description: gitops-repo-url   
+        namespace:
+          title: Namespace  -- this is the one in your ArgoCD App 
+          type: string
+          description: namespace-here 
+  steps:
+    - id: create-argocd-resources
+      name: Create ArgoCD Resources
+      action: argocd:create-resources
+      input:
+        appName: ${{ parameters.appName}} 
+        argoInstance: main
+        namespace: ${{ parameters.namespace}} 
+        repoUrl: ${{ parameters.repoUrl}} 
+        path: 'argocd/'
+  output:
+    links:
+      - title: Source Repository
+        url: ${{ parameters.repoUrl}} 
