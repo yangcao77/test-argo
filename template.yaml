@@ -28,6 +28,11 @@ spec:
           type: string
           description: namespace-here
           default: go-app3-namespace
+        path:
+          title: path
+          type: string
+          description: namespace-here
+          default: go-app3-namespace
   steps:
     - id: create-argocd-resources
       name: Create ArgoCD Resources
@@ -37,7 +42,7 @@ spec:
         argoInstance: default
         namespace: ${{ parameters.namespace}} 
         repoUrl: ${{ parameters.repoUrl}} 
-        path: ./
+        path: ${{ parameters.path}} 
   output:
     links:
       - title: Source Repository
